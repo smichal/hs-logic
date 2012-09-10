@@ -51,19 +51,19 @@ do
 Usage
 ----
 
-Logic formulas are represented as monadic computations in Monad(Plus) `MLogic`.
-`bind` corresponds to conjunction, `mplus` to disjunction.
-`fresh :: MLogic LVar` introduces new variable.
-`(===) :: (Termable a, Termable b) => a -> b -> Predicate` succeeds if `a` unifies with `b`.
+Logic formulas are represented as monadic computations in Monad(Plus) `MLogic`.  
+`bind` corresponds to conjunction, `mplus` to disjunction.  
+`fresh :: MLogic LVar` introduces new variable.  
+`(===) :: (Termable a, Termable b) => a -> b -> Predicate` succeeds if `a` unifies with `b`.  
 
 
 To get results use `run :: (Termable a) => MLogic a -> [Term]` function, it returns lazy list of possible solutions.
 
-`(=/=)` introduces disequality constrain.
-`conso a b c` succeeds if `a` cons `b` equals `c`.
-`success` always succeeds.
-`fail` never succeeds.
-`sth` unifies with everything.
+`(=/=)` introduces disequality constrain.  
+`conso a b c` succeeds if `a` cons `b` equals `c`.  
+`success` always succeeds.  
+`fail` never succeeds.  
+`sth` unifies with everything.  
 `membero, heado, tailo, emptyo, appendo` lists precicates.
 
 More in sources ;).
