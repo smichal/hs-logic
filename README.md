@@ -63,7 +63,6 @@ To get results use `run :: (Termable a) => MLogic a -> [Term]` function, it retu
 `conso a b c` succeeds if `a` cons `b` equals `c`.  
 `success` always succeeds.  
 `fail` never succeeds.  
-`sth` unifies with everything.  
 `membero, heado, tailo, emptyo, appendo` lists precicates.
 
 More in sources ;).

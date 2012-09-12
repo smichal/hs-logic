@@ -7,7 +7,6 @@ module HLogic(
     (=/=),
     run,
     Term(..),
-    sth,
     success,
     fail,
     fresh,
@@ -33,7 +32,6 @@ data Term = TInt Int
           | TString String
           | TVar Int 
           | TNil
-          | TAny
           | TCons Term Term deriving (Eq, Ord)
 
 instance Show Term where
@@ -95,11 +93,8 @@ unify a b s = case (a, b) of
         Nothing -> sInsert (LVar v) a s
         (Just val) -> unify val a s
     (a, v@(TVar _)) -> unify v a s
-    (TAny, _) -> s
-    (_, TAny) -> s
     _ -> Zonk
 
-sth = TAny
 
 verifyConstrain :: Substitution -> (Term, Term) -> Bool
 verifyConstrain s (TVar a, TVar b) = deepLookup (LVar a) s /= deepLookup (LVar b) s
@@ -159,9 +154,13 @@ membero x xs = do
     conso h t xs
     (eq x h) `mplus` (membero x t)
 
-heado a b = conso a sth b
+heado h l = do
+    t <- fresh
+    conso h t l
 
-tailo a b = conso sth a b
+tailo t l = do
+    h <- fresh
+    conso h t l
 
 emptyo l = l === TNil
 
